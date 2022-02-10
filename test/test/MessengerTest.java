@@ -29,7 +29,7 @@ class MessengerTest {
         korisnik4 = new Korisnik("Betty", "Boop", "bettyb");
         datum = LocalDateTime.of(
                 LocalDate.of(2020, 9, 12),
-                LocalTime.of(9,0,0,0)
+                LocalTime.of(9, 0, 0, 0)
         );
 
         poruke.add(new Poruka(korisnik1, korisnik2, datum, "Kako si?"));
@@ -42,19 +42,19 @@ class MessengerTest {
     }
 
     @BeforeEach
-    void setUpTest(){
+    void setUpTest() {
         messenger = new Messenger();
         poruke.forEach(poruka -> poruka.setStatusPoruke(StatusPoruke.NEPROCITANA));
     }
 
     @Test
-    public void konstruktorTest1(){
+    public void konstruktorTest1() {
         messenger = new Messenger();
         assertTrue(messenger.dajSvePoruke().isEmpty());
     }
 
     @Test
-    public void posaljiPorukuTest1(){
+    public void posaljiPorukuTest1() {
         messenger.posaljiPoruku(poruke.get(0));
         assertEquals(List.of(poruke.get(0)), messenger.dajSvePoruke());
     }
@@ -71,13 +71,13 @@ class MessengerTest {
     }
 
     @Test
-    public void  posaljiPorukeTest() {
+    public void posaljiPorukeTest() {
         messenger.posaljiPoruke(poruke);
         assertEquals(poruke, messenger.dajSvePoruke());
     }
 
     @Test
-    public void ponistiSlanjeTest1(){
+    public void ponistiSlanjeTest1() {
         messenger.posaljiPoruke(poruke);
 
         Exception exception = assertThrows(NeispravnaAkcija.class,
